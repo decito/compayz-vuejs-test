@@ -1,0 +1,42 @@
+.plan-grid {
+  display: grid;
+  grid-template-areas:
+    "label-1 value-1"
+    "label-2 value-2";
+}
+
+.plan-grid-label-1 {
+  grid-area: label-1;
+}
+
+.plan-grid-value-1 {
+  grid-area: value-1;
+  justify-self: end;
+  padding-right: 14px;
+}
+
+.plan-grid-label-2 {
+  grid-area: label-2;
+}
+
+.plan-grid-value-2 {
+  grid-area: value-2;
+  justify-self: end;
+  text-align: center;
+}
+
+.gap-2 {
+  grid-gap: 0.5rem;
+}
+
+.gap-4 {
+  grid-gap: 1rem;
+}
+
+.gap-8 {
+  grid-gap: 2rem;
+}
+
+.p-value {
+  padding-right: 14px;
+}
