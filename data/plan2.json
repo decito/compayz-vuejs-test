@@ -1,0 +1,18 @@
+{
+  "data": {
+    "planInfo": {
+      "id": 2,
+      "name": "Plano 5D",
+      "planBaseAmt": 341,
+      "contents": [
+        {
+          "baseQuantity": 1,
+          "service": "DOMAIN",
+          "addOnId": 1,
+          "packageQuantity": 1,
+          "maxAddOnQuantity": 1
+        }
+      ]
+    }
+  }
+}
