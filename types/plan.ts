@@ -1,4 +1,4 @@
-interface PlanContent {
+export interface PlanContent {
   baseQuantity: number,
   service: string,
   addOnId?: number,

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import PlanContainer from '~/components/PlanContainer.vue'
-import plans from "~/data/plans.json";
+import plansData from "~/data/plans.json"
 
 export default defineComponent({
   name: 'IndexPage',
@@ -12,14 +12,13 @@ export default defineComponent({
 
   data() {
     return {
-      currentPlan: 1,
-      plans: plans.data.activePlans
+      plans: plansData.data.activePlans
     }
   },
 
   methods: {
     togglePlan($event: any) {
-      this.currentPlan = $event.target.value
+      this.$store.commit('togglePlan', $event.target.value - 1)
     }
   }
 })
@@ -31,16 +30,16 @@ export default defineComponent({
 
       <head class="d-flex justify-content-between gap-2">
         <button v-for="plan in plans" :key="plan.id" class="outline-primary flex-grow-1" :value="plan.id"
-          @click="togglePlan($event)">
+          @click.prevent.stop="togglePlan($event)">
           {{ plan.name }}
         </button>
       </head>
 
       <main class="d-flex justify-content-between gap-8">
         <div class="flex-grow-1">
-          <p>O plano vai incluir</p>
+          <p>O plano irá incluir</p>
 
-          <PlanContainer :plan-data="plans[currentPlan - 1]" />
+          <PlanContainer />
         </div>
 
         <aside>

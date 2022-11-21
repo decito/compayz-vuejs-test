@@ -15,9 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: '/css/main.css' }
     ],
-    bodyAttrs: {
-      class: 'bg-dark text-white'
-    }
+    bodyAttrs: { class: 'bg-dark text-white' }
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

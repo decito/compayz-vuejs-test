@@ -1,44 +1,48 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ActivePlans } from '~/types';
+
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'PlanContainer',
 
-  props: {
-    planData: {
-      type: Object as () => ActivePlans,
-      default: () => ({
-        id: 0,
-        seqno: 0,
-        name: "error"
-      }),
-      required: true
+  computed: {
+    ...mapGetters({ plan: 'getPlan' })
+  },
+
+  methods: {
+    sliderHelper($event: any) {
+      //this.$store.commit('togglePlan', $event.target.value - 1)
+      console.log($event.target.value)
     }
   }
 })
 </script>
 
 <template>
-  <div>
-    <section class="d-flex justify-content-between gap-4">
-      <p>{{ planData.name }}</p>
+  <div class="px-2">
+    <section v-for="(planContent, index) in plan.contents" :key="index"
+      class="d-flex justify-content-between gap-4 border border-secondary">
+      <template v-if="planContent?.addOnId">
+        <div class="d-flex flex-column">
+          <p class="text-capitalize">{{ planContent.service.toLowerCase() }}</p>
 
-      <p class="p-value">1</p>
-    </section>
+          <p>Adicionar pacotes avulsos</p>
+        </div>
 
-    <section class="d-flex justify-content-between gap-4">
-      <div>
-        <p>Domínios</p>
+        <div class="d-flex flex-column align-items-center">
+          <p>{{ planContent.baseQuantity }}</p>
 
-        <p>Adicionar pacotes avulsos</p>
-      </div>
+          <input type="range" :min="planContent.baseQuantity" :value="planContent.packageQuantity" step="1"
+            :max="planContent.maxAddOnQuantity" @change="sliderHelper">
+        </div>
+      </template>
 
-      <div class="text-center">
-        <p>3</p>
+      <template v-else>
+        <p class="text-capitalize">{{ planContent?.service.toLowerCase() }}</p>
 
-        <div>slider</div>
-      </div>
+        <p class="pr-4">{{ planContent?.baseQuantity }}</p>
+      </template>
     </section>
   </div>
 </template>
