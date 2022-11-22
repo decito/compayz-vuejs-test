@@ -34,12 +34,10 @@ const createStore = () => {
 
       setCartTotal(state, payload?) {
         state.cartTotal = state.plan.planBaseAmt + payload
-      }
-    },
+      },
 
-    actions: {
-      updateCartTotal({ commit }, payload) {
-        commit('setCartTotal', payload)
+      addToCart(state, payload) {
+        state.cartTotal += payload
       }
     }
   })

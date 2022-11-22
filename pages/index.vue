@@ -9,7 +9,7 @@ export default defineComponent({
   name: 'IndexPage',
 
   components: {
-    PlanContainer
+    PlanContainer,
   },
 
   data() {
@@ -36,12 +36,12 @@ export default defineComponent({
   <main style="max-width: 1440px" class="mx-auto">
     <div class="p-2 d-flex flex-column gap-8">
 
-      <head class="d-flex justify-content-between gap-2">
+      <header class="d-flex justify-content-between gap-2">
         <button v-for="plan in plans" :key="plan.id" class="outline-primary flex-grow-1" :value="plan.id"
-          @click.prevent.stop="togglePlan($event)">
+          @click.prevent="togglePlan($event)">
           {{ plan.name }}
         </button>
-      </head>
+      </header>
 
       <main class="d-flex justify-content-between gap-4">
         <div class="flex-grow-1 border border-secondary rounded p-2 max-w-75">
@@ -71,5 +71,7 @@ export default defineComponent({
         </aside>
       </main>
     </div>
+
+    <!-- <CartModal /> -->
   </main>
 </template>
