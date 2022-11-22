@@ -40,3 +40,15 @@
 .p-value {
   padding-right: 14px;
 }
+
+.border-t {
+  border-top: 1px solid #e2e8f0;
+}
+
+.max-w-25 {
+  max-width: 25%;
+}
+
+.max-w-75 {
+  max-width: 75%;
+}

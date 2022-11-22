@@ -1,7 +1,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mapGetters } from 'vuex'
 import PlanContainer from '~/components/PlanContainer.vue'
 import plansData from "~/data/plans.json"
+import { maskMoney } from '~/helpers'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -19,8 +21,14 @@ export default defineComponent({
   methods: {
     togglePlan($event: any) {
       this.$store.commit('togglePlan', $event.target.value - 1)
-    }
-  }
+    },
+
+    maskMoney: maskMoney
+  },
+
+  computed: {
+    ...mapGetters({ plan: 'getPlan', cartTotal: 'getCartTotal' })
+  },
 })
 </script>
 
@@ -35,30 +43,30 @@ export default defineComponent({
         </button>
       </head>
 
-      <main class="d-flex justify-content-between gap-8">
-        <div class="flex-grow-1">
+      <main class="d-flex justify-content-between gap-4">
+        <div class="flex-grow-1 border border-secondary rounded p-2 max-w-75">
           <p>O plano irá incluir</p>
 
           <PlanContainer />
         </div>
 
-        <aside>
+        <aside class="flex-grow-1 border border-secondary rounded p-2 max-w-25">
           <section>
             Sua Escolha
           </section>
 
           <section class="d-flex justify-content-between gap-4">
-            <p>Plano 4D</p>
-            <p>R$ 100,00</p>
+            <p>{{ plan.name }}</p>
+            <p>{{ maskMoney(plan.planBaseAmt) }}</p>
           </section>
 
           <section class="d-flex justify-content-between gap-4">
             <p>TOTAL</p>
-            <p>R$ 100,00</p>
+            <p>{{ maskMoney(cartTotal) }}</p>
           </section>
 
           <section>
-            <button class="bg-primary">Assinar Plano</button>
+            <button class="bg-primary w-100">Assinar Plano</button>
           </section>
         </aside>
       </main>

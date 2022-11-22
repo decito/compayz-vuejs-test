@@ -12,9 +12,17 @@ export default defineComponent({
 
   methods: {
     sliderHelper($event: any) {
-      //this.$store.commit('togglePlan', $event.target.value - 1)
+      // this.$store.commit('togglePlan', $event.target.value - 1)
       console.log($event.target.value)
     }
+  },
+
+  mounted() {
+    this.$store.commit('setCartTotal', 0)
+  },
+
+  updated() {
+    this.$store.commit('setCartTotal', 0)
   }
 })
 </script>
@@ -22,7 +30,7 @@ export default defineComponent({
 <template>
   <div class="px-2">
     <section v-for="(planContent, index) in plan.contents" :key="index"
-      class="d-flex justify-content-between gap-4 border border-secondary">
+      class="d-flex justify-content-between gap-4 border-t border-secondary pt-2">
       <template v-if="planContent?.addOnId">
         <div class="d-flex flex-column">
           <p class="text-capitalize">{{ planContent.service.toLowerCase() }}</p>
